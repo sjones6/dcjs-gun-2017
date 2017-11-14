@@ -1,0 +1,68 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Gun.js: Graph Demo</title>
+        <script src="node_modules/gun/gun.min.js"></script>
+
+        <script>
+
+            // Clear out localStorage every page load
+            localStorage.clear()
+
+            window.onload = function() {
+
+                // create the Gun instance. Yep, that's it
+                var gun = window.gun = new Gun()
+
+                // Wire up a listener to the gun instance for read/write ops
+                // and display on the DOM
+
+                // WRITE
+                var putDOM = document.getElementById("put-graph")
+                gun.on('put', function(msg) {
+                    putDOM.innerHTML = JSON.stringify(msg.put, null, '  ').trim()
+                })
+
+                // READ
+                var getDOM = document.getElementById("get-graph")
+                gun.on('get', function(msg) {
+                    getDOM.innerHTML = JSON.stringify(msg.get, null, '  ').trim()
+                })
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <section id="get">
+            <h2>GET:</h2>
+            <pre><code id="get-graph"></code></pre>
+        </section>
+        <section id="put">
+            <h2>PUT:</h2>
+            <pre><code id="put-graph"></code></pre>
+            
+        </section>
+    </body>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+        
+        #get,
+        #put {
+            display: inline-block;
+            width: 48%;
+            vertical-align: top;
+        }
+
+        pre {
+            font-family: sans-serif;
+            font-size: 30px;
+            background-color: #999;
+            padding: 20px;
+        }
+        
+    </style>
+</html>
