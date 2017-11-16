@@ -1,7 +1,7 @@
 const { createServer } = require('http')
 const Gun = require('gun')
 
-const http = createServer((req, res) => res.end("What's up DCJS"))
+const http = createServer((req, res) => res.end("What's up DCJS!"))
 
 var gun = new Gun({
     web: http,
@@ -10,7 +10,7 @@ var gun = new Gun({
             console.log("Peer connected!")
             return true
         }
-    }
+    } 
 })
 
 http.listen(8000)

@@ -6,7 +6,7 @@ spencer.put({name: 'spencer'})
 
 // Let's make some relationships
 var spencer = gun.get('spencer').put({name: 'spencer'})
-var lucy = gun.get('lucy')
+var lucy = gun.get('lucy').put({name: 'lucy'})
 spencer.get('boss').put(lucy)
 
 spencer.val(console.log)
@@ -14,7 +14,7 @@ spencer.get('boss').val(console.log)
 
 // Let's do some more relationships
 var projects = gun.get('projects');
-var proj1 = projects.get('proj1').put({name: 'some cool JS project'});
+var proj1 = gun.get('proj1').put({name: 'some cool JS project'});
 projects.set(proj1)
 spencer.get('project').put(proj1)
 lucy.get('manages').put(proj1)
